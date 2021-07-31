@@ -1,11 +1,15 @@
 import 'package:coffee_app/constants/app_color.dart';
 import 'package:coffee_app/ui/widgets/boutton_app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/gestures.dart';
 
-class LoginScreenView extends StatelessWidget {
-  const LoginScreenView({Key? key}) : super(key: key);
+class RegisterScreenView extends StatefulWidget {
+  RegisterScreenView({Key? key}) : super(key: key);
 
+  @override
+  _RegisterScreenViewState createState() => _RegisterScreenViewState();
+}
+
+class _RegisterScreenViewState extends State<RegisterScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +24,7 @@ class LoginScreenView extends StatelessWidget {
           child: Icon(Icons.arrow_back_ios,color: AppColors.primary_color,),
         ),
         title:Text(
-          'Login',
+          'Register',
            style: TextStyle(
            color: AppColors.primary_color,
            fontSize: 22,
@@ -37,7 +41,7 @@ class LoginScreenView extends StatelessWidget {
             ),
             Center(
               child: Text(
-                'Welcome back!',
+                'Create a user account',
                 style: TextStyle(
                   color: AppColors.secondary_color,
                   fontSize: 32,
@@ -57,8 +61,44 @@ class LoginScreenView extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     enabled: true,
+                    labelText: 'Names',
+                    hintText: 'Enter your names',
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding:EdgeInsets.only(
+                left: 40,
+                right: 40
+              ),
+              child: Center(
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabled: true,
                     labelText: 'Email',
                     hintText: 'Enter your email adress',
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding:EdgeInsets.only(
+                left: 40,
+                right: 40
+              ),
+              child: Center(
+                child: TextField(
+                  decoration: InputDecoration(
+                    enabled: true,
+                    labelText: 'Phone number',
+                    hintText: 'Enter your phone number',
                   ),
                 ),
               ),
@@ -93,6 +133,32 @@ class LoginScreenView extends StatelessWidget {
               height: 20,
             ),
             Padding(
+              padding:EdgeInsets.only(
+                left: 40,
+                right: 40
+              ),
+              child: Center(
+                child: TextField(
+                  obscuringCharacter: '*',
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    enabled: true,
+                    labelText: 'Confirm password',
+                    hintText: 'Enter your password again',
+                    suffixIcon: GestureDetector(
+                      onTap:(){
+
+                      },
+                      child:Icon(Icons.remove_red_eye_rounded,color:AppColors.primary_color)
+                    )
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
               padding: EdgeInsets.only(
                 left: 40,
                 right: 40
@@ -102,10 +168,10 @@ class LoginScreenView extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap:(){
-
+                    Navigator.pushNamed(context, '/auth/login_screen');
                   },
                   child:Text(
-                'Forgot password?',
+                'are you registered ?',
                 style: TextStyle(
                   color: AppColors.secondary_color,
                   fontSize: 14,
@@ -119,39 +185,8 @@ class LoginScreenView extends StatelessWidget {
             SizedBox(
               height: 50,
             ),
-
             BottonsApp.btnLarge(
-              onTap:(){
-                Navigator.pushNamed(context, '/home_screen');
-              },
-              textBtn: 'Log In',
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text:
-                  "Don’t have an account? ",
-                   style: TextStyle(
-                      color: AppColors.secondary_color,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400
-                  ),
-                    children: [
-                      TextSpan(
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = ()=>Navigator.pushNamed(context, '/auth/register_screen'),
-                          text: "Register",
-                          style: TextStyle(
-                      color: AppColors.primary_color,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400
-                  ),
-                      )
-                    ],
-              )
+              textBtn: 'Register'
             ),
           ]
         ),

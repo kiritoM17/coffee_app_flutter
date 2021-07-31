@@ -1,4 +1,5 @@
 import 'package:coffee_app/constants/app_color.dart';
+import 'package:coffee_app/ui/widgets/boutton_app.dart';
 import 'package:flutter/material.dart';
 
 class InitScreenView extends StatefulWidget {
@@ -20,94 +21,55 @@ class _InitScreenViewState extends State<InitScreenView> {
             ),
             Image.asset('assets/images/artwork.png'),
             SizedBox(
-              height: 10,
+              height: 40,
             ),
             Text(
               'Get the best \ncoffee in town!',
               style: TextStyle(
-                color:AppColors.secondary_color,
-                fontWeight: FontWeight.w500,
+                color:AppColors.home_intro_text,
+                fontWeight: FontWeight.w400,
                 fontSize: 32,
               ),
             ),
             SizedBox(
               height: 60,
             ),
-            Row(
+            Padding(
+              padding: EdgeInsets.only(
+                left:30,
+                right:30
+              ),
+              child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  height:50,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color:AppColors.primary_color,
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Register',
-                      style: TextStyle(
-                        color: AppColors.white_color,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500
-                      ),
-                    ),
-                  ),
+                BottonsApp.btnMeduim(
+                  onTap:(){
+                    Navigator.pushNamed(context, '/auth/register_screen');
+                  },
+                  textBtn: 'Register',
+                  btnBgColor: AppColors.primary_color,
+                  btnTextColor: AppColors.white_color,
                 ),
-                GestureDetector(
+                BottonsApp.btnMeduim(
                   onTap:(){
                     Navigator.pushNamed(context, '/auth/login_screen');
                   },
-                  child:Container(
-                  height:50,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color:AppColors.white_color,
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color:AppColors.primary_color)
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Log In',
-                      style: TextStyle(
-                        color: AppColors.primary_color,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500
-                      ),
-                    ),
-                  ),
-                )
-                )
-              ],
+                  textBtn: 'Log In'
+                ),
+               ],
+            ),
             ),
             SizedBox(
               height: 20,
             ),
-            Center(
-              child: Container(
-                height: 50,
-                width: 315,
-                decoration: BoxDecoration(
-                    color:AppColors.white_color,
-                    borderRadius: BorderRadius.circular(50),
-                    border: Border.all(color:AppColors.blue_color)
-                  ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/images/google_logo.png',scale: 4,),
-                    Text(
-                      'Connect with Google',
-                      style: TextStyle(
-                        color: AppColors.blue_color,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
+
+            BottonsApp.btnLarge(
+              textBtn: 'Connect with Google',
+              btnTextColor: AppColors.blue_color,
+              btnBgColor: AppColors.white_color,
+              btnBorderColor: AppColors.blue_color,
+              btnLogoPath: 'assets/images/google_logo.png'
+            ),
           ]
         ),
       ),
